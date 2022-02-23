@@ -100,10 +100,8 @@ window.addEventListener("load", () => {
         return response.json();
       })
       .then((data) => {
-
         taskDataInput.value = "";
         taskSpace.innerHTML = "";
-        //ACA TIENE QUE IR UN CLEAR TASK
         getTasks();
       });
   };

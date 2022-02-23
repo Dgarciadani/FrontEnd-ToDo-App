@@ -65,7 +65,7 @@ window.addEventListener("load", () => {
       .then((data) => {
         sessionStorage.setItem("data", data.jwt);
         if (data.jwt) {
-          alert("El se logeo creo correctamente");
+          alert("inicio de sesion exitoso");
           location.href = "./mis-tareas.html";
         } else {
           alert("Ocurrio un problema al iniciar sesion");

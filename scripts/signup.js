@@ -1,6 +1,4 @@
 window.addEventListener("load", () => {
-  console.log("cargo");
-
   //SELECT CAMPOS
   const campoName = document.querySelector("#nombre");
   const campoLast = document.querySelector("#apellido");
@@ -16,7 +14,6 @@ window.addEventListener("load", () => {
     e.preventDefault();
 
     if (enableButton()) {
-      console.log(colectData());
       // llamo a la f que envia la info a la api
       sendData();
     }
@@ -45,7 +42,6 @@ window.addEventListener("load", () => {
     let regex = new RegExp(
       `^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$`
     );
-    console.log(regex.test(campoPass.value) + "MIRATE ESTE PERRO");
     return regex.test(campoPass.value);
   }
   function twinsPass() {
@@ -86,12 +82,10 @@ window.addEventListener("load", () => {
     ) {
       subButton.disabled = false;
       subButton.classList.add("enable");
-      console.log("Button acti");
       return true;
     } else {
       subButton.disabled = true;
       subButton.classList.remove("enable");
-      console.log("Button disabled");
       return false;
     }
   }
@@ -99,7 +93,6 @@ window.addEventListener("load", () => {
   function showError(camp) {
     switch (camp.id) {
       case "nombre":
-        console.log("campo name in");
         if (!stringConte(campoName)) {
           errorInputs[0].innerHTML = `<li>"El campo nombre no es valido"</li>`;
           document.querySelector("#nombre").classList.add("error");
@@ -110,7 +103,6 @@ window.addEventListener("load", () => {
           break;
         }
       case "apellido":
-        console.log("campo last in");
         if (!stringConte(campoLast)) {
           errorInputs[1].innerHTML = `<li>"El campo apellido no es valido"</li>`;
           document.querySelector("#apellido").classList.add("error");
@@ -121,7 +113,6 @@ window.addEventListener("load", () => {
           break;
         }
       case "email":
-        console.log("campo email in");
         if (!isValidEmail(campoEmail)) {
           errorInputs[2].innerHTML = `<li>"El campo email no tiene un formato valido"</li>`;
           document.querySelector("#email").classList.add("error");
@@ -132,7 +123,6 @@ window.addEventListener("load", () => {
           break;
         }
       case "pass":
-        console.log("campo pass in");
         if (!contePass(campoPass)) {
           errorInputs[3].innerHTML = `<li>"La contraseña debe incluir  por lo menos una mayuscula, una miniscula, un número y un caracter especial (@,#,$,%,^,&,*), Minimo 8 caracteres "</li>`;
           document.querySelector("#pass").classList.add("error");
@@ -143,7 +133,6 @@ window.addEventListener("load", () => {
           break;
         }
       case "confirmPass":
-        console.log("campo confirmpass in");
         if (!twinsPass(campoConfirm)) {
           errorInputs[4].innerHTML = `<li>"Las contraseñas no son iguales"</li>`;
           document.querySelector("#confirmPass").classList.add("error");
@@ -256,7 +245,6 @@ window.addEventListener("load", () => {
       },
       body: JSON.stringify(colectData()),
     };
-    console.log(settings);
     return settings;
   }
   function sendData() {
@@ -267,7 +255,6 @@ window.addEventListener("load", () => {
       .then((data) => {
         // ESTO ESTA MAL, NO DEBERIA ESTABLECERSE EL SESION STORAGE CON SOLO REGISTRAR EL USUARIO, DEBERIA PEDIRSE INICIER SESION PRIMERO
         // sessionStorage.setItem("data", data.jwt);
-        console.log(data.jwt);
         if (data.jwt) {
           alert("El usuario de creo correctamente");
           location.href = "./index.html";
